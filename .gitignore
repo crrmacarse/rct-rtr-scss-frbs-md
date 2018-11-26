@@ -24,3 +24,4 @@ yarn-error.log*
 
 #personal config
 .env
+trash.txt
