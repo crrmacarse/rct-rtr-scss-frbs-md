@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 const Navigation = () => (
-    <div>
+    <div className = "row">
         <ul>
             <li>
                 <Link to = { ROUTES.SIGN_IN }>Sign in</Link>

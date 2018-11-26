@@ -1,11 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import * as ROUTES from '../../constants/routes';
+import { FirebaseContext } from '../Firebase';
+import SignUpForm from './SignUpForm';
 
 const Signup = () => (
     <div>
-        <h1>Signup</h1>
+        <div className="row">
+            <div className="col-auto mx-auto">
+                <h1>Signup Form</h1>
+            </div>
+        </div>
+        <FirebaseContext.Consumer>
+            {firebase => <SignUpForm firebase={firebase} />}
+        </FirebaseContext.Consumer>
     </div>
 );
 
