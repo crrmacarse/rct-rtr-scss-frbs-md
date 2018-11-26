@@ -1,9 +1,15 @@
 import React from 'react';
+import { 
+    BrowserRouter as Router
+}from 'react-router-dom';
+
+import Navigation from '../Navigation';
 
 const App = () => (
-    <div>
+    <Router>
+        <Navigation />
         <h1>App</h1>
-    </div>
+    </Router>
 );
 
 export default App;
