@@ -22,12 +22,12 @@ const Navigation = () => (
                 <li className="nav-item">
                         <Link className="nav-link" to={ROUTES.LANDING}>Landing Page</Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                         <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
                 </li>
                 <li className="nav-item">
                         <Link  className="nav-link" to={ROUTES.ADMIN}> Admin</Link>
-                </li>
+                </li> */}
                 <li className="nav-item active">
                         <Link className="nav-link" to={ROUTES.SIGN_IN}>Sign in</Link>
                 </li>
