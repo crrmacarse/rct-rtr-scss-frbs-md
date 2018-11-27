@@ -7,7 +7,6 @@ import PasswordForgetForm from './PasswordForgetForm';
 import * as ROUTES from '../../constants/routes';
 
 const PasswordForget = () => (
-    <div>
         <div className = "row">
             <div className = "col-6 mx-auto">  
                 <h1>Forgot Password?</h1>
@@ -15,7 +14,6 @@ const PasswordForget = () => (
             </div>
         </div>
         
-    </div>
 );
 
 const PasswordForgetLink = () => (
