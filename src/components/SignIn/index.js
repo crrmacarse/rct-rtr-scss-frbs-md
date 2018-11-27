@@ -2,6 +2,7 @@ import React from 'react';
 
 import SignInForm from './SigininForm';
 import { SignUpLink } from '../SignUp';
+import { PasswordForgetLink } from '../PasswordForget';
 
 
 const Signin = () => (
@@ -15,6 +16,7 @@ const Signin = () => (
         <div className="row mx-auto">
             <div className="col-6 mx-auto mt-5">
                 <SignUpLink />
+                <PasswordForgetLink />
             </div>
         </div>
 
