@@ -1,5 +1,6 @@
 import React from 'react';
 import { withFirebase } from '../Firebase';
+import { compose } from 'recompose';
 
 import { 
     Link,
@@ -140,7 +141,10 @@ const SignUpLink = () => (
     </p>
 );
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = compose(
+    withRouter,
+    withFirebase,
+)(SignUpFormBase);
 
 export default SignUpForm;
 
