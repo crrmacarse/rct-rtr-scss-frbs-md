@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
-import * as ROUTES from '../../constants/routes';
+import SignInForm from './SigininForm';
+import { SignUpLink } from '../SignUp';
 
 
 const Signin = () => (
-    <div>
-        <h1>Signin</h1>
-        <Link to = {ROUTES.SIGN_UP}>SIGN UP</Link>
+    <div className="container">
+        <div className="row mx-auto">
+            <div className="col-6 mx-auto">
+                <h1 className="text-right">Sign-in</h1>
+                <SignInForm />
+            </div>
+        </div>
+        <div className="row mx-auto">
+            <div className="col-6 mx-auto mt-5">
+                <SignUpLink />
+            </div>
+        </div>
+
     </div>
 );
+
 
 export default Signin;
