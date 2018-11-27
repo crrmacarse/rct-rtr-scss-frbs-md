@@ -2,10 +2,10 @@ import React from 'react';
 
 const Home = () => (
     <div>
-        <h3>Agenda</h3>
+        <h3>Test</h3>
         <ul>
             <li>
-                Sign up problem
+                
             </li>
 
         </ul>

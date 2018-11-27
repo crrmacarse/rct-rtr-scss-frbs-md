@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 
+import SignOutButton from '../SignOut';
+
 const Navigation = () => (
     <nav className="navbar navbar-expand-lg navbar-light">
            <Link className="navbar-brand" to={ROUTES.HOME}>Content Management System</Link>
@@ -30,6 +32,9 @@ const Navigation = () => (
                 </li> */}
                 <li className="nav-item active">
                         <Link className="nav-link" to={ROUTES.SIGN_IN}>Sign in</Link>
+                </li>
+                <li className="nav-item active">
+                     <SignOutButton />
                 </li>
             </ul>
         </div>
