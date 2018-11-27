@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 
+import { AuthUserContext } from '../Session';
+
 import SignOutButton from '../SignOut';
 
-const Navigation = ({ authUser }) => (
+const Navigation = () => (
     <nav className="navbar navbar-expand-lg navbar-light">
         <Link className="navbar-brand" to={ROUTES.LANDING}>Content Management System</Link>
         <button
@@ -19,7 +21,11 @@ const Navigation = ({ authUser }) => (
             <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
-            {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+            <AuthUserContext.Consumer>
+                {authUser =>
+                    authUser ? <NavigationAuth /> : <NavigationNonAuth />
+                }
+            </AuthUserContext.Consumer>
         </div>
     </nav>
 );

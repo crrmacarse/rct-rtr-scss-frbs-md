@@ -4,7 +4,7 @@ import {
     Route,
 } from 'react-router-dom';
 
-import { withFirebase } from '../Firebase';
+import { withAuthentication } from '../Session';
 
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -17,45 +17,21 @@ import AdminPage from '../Admin';
 
 import * as ROUTES from '../../constants/routes';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          authUser: null,
-        };
-      }
 
-      componentDidMount(){
-            this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-              authUser
-              ? this.setState({ authUser })
-              : this.setState({ authUser: null });
-          });
-      }
+const App = () => (
+    <Router>
+        <div className="container-fluid">
+            <Navigation />
+            <hr />
+            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+            <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+            <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
+            <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+        </div>
+    </Router>
+);
 
-      componentWillUnmount(){
-          this.listener();
-      }
-
-    render() {
-        return (
-            <Router>
-                <div className="container-fluid">
-                    <Navigation authUser = {this.state.authUser} />
-                    <hr />
-
-                    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                    <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
-                    <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-                    <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-                    <Route exact path={ROUTES.HOME} component={HomePage} />
-                    <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
-                    <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-                </div>
-            </Router>
-        );
-    }
-}
-
-export default withFirebase(App);
+export default withAuthentication(App);
