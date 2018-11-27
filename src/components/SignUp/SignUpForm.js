@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -33,9 +32,7 @@ class SignUpform extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            INITIAL_STATE
-        }
+        this.state = { ...INITIAL_STATE };
     }
 
     onSubmit = event => {
@@ -65,14 +62,15 @@ class SignUpform extends React.Component {
             email,
             passwordOne,
             passwordTwo,
-            error
-        } = this.state;
+            error,
+          } = this.state;
 
+     
         const isInvalid =
-            passwordOne !== passwordTwo ||
-            passwordOne === '' ||
-            email === '' ||
-            username === '';
+        passwordOne !== passwordTwo ||
+        passwordOne === '' ||
+        email === '' ||
+        username === '';
 
         return (
             <div className="row mx-auto">
@@ -88,10 +86,20 @@ class SignUpform extends React.Component {
                                 value={username}
                             />
                         </div>
-
                         <div className="m-4">
                             <TextField
-                                name="password1"
+                                name="email"
+                                label="Email"
+                                onChange={this.onChange}
+                                id="idEmail"
+                                fullWidth
+                                value={email}
+                                helperText="Lorem Ipsum Dolor"
+                            />
+                        </div>
+                        <div className="m-4">
+                            <TextField
+                                name="passwordOne"
                                 label="Password"
                                 type="password"
                                 onChange={this.onChange}
@@ -102,7 +110,7 @@ class SignUpform extends React.Component {
                         </div>
                         <div className="m-4">
                             <TextField
-                                name="password2"
+                                name="passwordTwo"
                                 label="Confirm Password"
                                 type="password"
                                 onChange={this.onChange}
@@ -110,17 +118,6 @@ class SignUpform extends React.Component {
                                 fullWidth
                                 value={passwordTwo}
                                 helperText="Confirm Password"
-                            />
-                        </div>
-                        <div className="m-4">
-                            <TextField
-                                name="email"
-                                label="Email"
-                                onChange={this.onChange}
-                                id="idEmail"
-                                fullWidth
-                                value={email}
-                                helperText="Lorem Ipsum Dolor"
                             />
                         </div>
                         {error && <p>{error.message}</p>}
