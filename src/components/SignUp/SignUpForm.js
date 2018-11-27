@@ -1,6 +1,10 @@
 import React from 'react';
+import { withFirebase } from '../Firebase';
 
-import { Link } from 'react-router-dom';
+import { 
+    Link,
+    withRouter 
+} from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -8,17 +12,6 @@ import * as ROUTES from '../../constants/routes';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: 200,
-    },
-});
 
 const INITIAL_STATE = {
     username: '',
@@ -28,7 +21,7 @@ const INITIAL_STATE = {
     error: null,
 }
 
-class SignUpform extends React.Component {
+class SignUpFormBase extends React.Component {
     constructor(props) {
         super(props);
 
@@ -42,6 +35,7 @@ class SignUpform extends React.Component {
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
+                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
@@ -63,14 +57,14 @@ class SignUpform extends React.Component {
             passwordOne,
             passwordTwo,
             error,
-          } = this.state;
+        } = this.state;
 
-     
+
         const isInvalid =
-        passwordOne !== passwordTwo ||
-        passwordOne === '' ||
-        email === '' ||
-        username === '';
+            passwordOne !== passwordTwo ||
+            passwordOne === '' ||
+            email === '' ||
+            username === '';
 
         return (
             <div className="row mx-auto">
@@ -82,6 +76,7 @@ class SignUpform extends React.Component {
                                 label="Username"
                                 onChange={this.onChange}
                                 id="idUsername"
+                                autoComplete="username"
                                 fullWidth
                                 value={username}
                             />
@@ -95,7 +90,7 @@ class SignUpform extends React.Component {
                                 fullWidth
                                 value={email}
                                 helperText="Lorem Ipsum Dolor"
-                            />
+                            />  
                         </div>
                         <div className="m-4">
                             <TextField
@@ -104,6 +99,7 @@ class SignUpform extends React.Component {
                                 type="password"
                                 onChange={this.onChange}
                                 id="idPassword1"
+                                autoComplete="new-password"
                                 fullWidth
                                 value={passwordOne}
                             />
@@ -115,6 +111,7 @@ class SignUpform extends React.Component {
                                 type="password"
                                 onChange={this.onChange}
                                 id="idPassword2"
+                                autoComplete="new-password"
                                 fullWidth
                                 value={passwordTwo}
                                 helperText="Confirm Password"
@@ -143,7 +140,8 @@ const SignUpLink = () => (
     </p>
 );
 
+const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
-export default SignUpform;
+export default SignUpForm;
 
 export { SignUpLink };
