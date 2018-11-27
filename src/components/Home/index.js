@@ -2,7 +2,13 @@ import React from 'react';
 
 const Home = () => (
     <div>
-        <h1>Home</h1>
+        <h3>Agenda</h3>
+        <ul>
+            <li>
+                Sign up problem
+            </li>
+
+        </ul>
     </div>
 );
 

@@ -43,15 +43,16 @@ class SignUpform extends React.Component {
 
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
-            .then(authUser =>{
-                this.setState({ INITIAL_STATE});
+            .then(authUser => {
+                this.setState({ ...INITIAL_STATE });
             })
             .catch(error => {
-                this.setState({error});
-            })
+                this.setState({ error });
+            });
 
         event.preventDefault();
     };
+
 
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -82,8 +83,8 @@ class SignUpform extends React.Component {
                                 name="username"
                                 label="Username"
                                 onChange={this.onChange}
-                                id="margin-none"
-                                fullWidth={true}
+                                id="idUsername"
+                                fullWidth
                                 value={username}
                             />
                         </div>
@@ -94,8 +95,8 @@ class SignUpform extends React.Component {
                                 label="Password"
                                 type="password"
                                 onChange={this.onChange}
-                                id="margin-none"
-                                fullWidth="100%"
+                                id="idPassword1"
+                                fullWidth
                                 value={passwordOne}
                             />
                         </div>
@@ -105,8 +106,8 @@ class SignUpform extends React.Component {
                                 label="Confirm Password"
                                 type="password"
                                 onChange={this.onChange}
-                                id="margin-none"
-                                fullWidth="100%"
+                                id="idPassword2"
+                                fullWidth
                                 value={passwordTwo}
                                 helperText="Confirm Password"
                             />
@@ -116,8 +117,8 @@ class SignUpform extends React.Component {
                                 name="email"
                                 label="Email"
                                 onChange={this.onChange}
-                                id="margin-none"
-                                fullWidth="100%"
+                                id="idEmail"
+                                fullWidth
                                 value={email}
                                 helperText="Lorem Ipsum Dolor"
                             />
@@ -128,9 +129,9 @@ class SignUpform extends React.Component {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            fullWidth= "100%"
+                            fullWidth
                         >Sign up</Button>
-                      
+
                     </form>
                 </div>
             </div>
