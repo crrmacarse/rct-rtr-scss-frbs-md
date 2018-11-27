@@ -5,9 +5,9 @@ import * as ROUTES from '../../constants/routes';
 
 import SignOutButton from '../SignOut';
 
-const Navigation = () => (
+const Navigation = ({ authUser }) => (
     <nav className="navbar navbar-expand-lg navbar-light">
-           <Link className="navbar-brand" to={ROUTES.HOME}>Content Management System</Link>
+        <Link className="navbar-brand" to={ROUTES.LANDING}>Content Management System</Link>
         <button
             className="navbar-toggler"
             type="button"
@@ -19,27 +19,35 @@ const Navigation = () => (
             <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav ml-auto">
-            
-                <li className="nav-item">
-                        <Link className="nav-link" to={ROUTES.LANDING}>Landing Page</Link>
-                </li>
-                {/* <li className="nav-item">
-                        <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
-                </li>
-                <li className="nav-item">
-                        <Link  className="nav-link" to={ROUTES.ADMIN}> Admin</Link>
-                </li> */}
-                <li className="nav-item active">
-                        <Link className="nav-link" to={ROUTES.SIGN_IN}>Sign in</Link>
-                </li>
-                <li className="nav-item active">
-                     <SignOutButton />
-                </li>
-            </ul>
+            {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
         </div>
-
     </nav>
 );
+
+const NavigationAuth = () => (
+    <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+            <Link className="nav-link" to={ROUTES.HOME}>Home</Link>
+        </li>
+        <li className="nav-item">
+            <Link className="nav-link" to={ROUTES.ADMIN}> Admin</Link>
+        </li>
+        <li className="nav-item">
+            <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
+        </li>
+
+        <li className="nav-item active">
+            <SignOutButton />
+        </li>
+    </ul>
+);
+
+const NavigationNonAuth = () => (
+    <ul className="navbar-nav ml-auto">
+        <li className="nav-item active">
+            <Link className="nav-link" to={ROUTES.SIGN_IN}>Sign in</Link>
+        </li>
+    </ul>
+)
 
 export default Navigation;
