@@ -16,20 +16,25 @@ class PasswordChangeForm extends React.Component {
         super(props);
 
         this.state = {
-            ...INITIAL_STATE
+            ...INITIAL_STATE,
+            popupopen: true
         }
     }
 
     onSubmit = event => {
+        this.setState({popupopen: true});
         const { passwordOne } = this.state;
 
         this.props.firebase
-            .doPasswordupdate(passwordOne)
+            .doPasswordUpdate(passwordOne)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
             })
             .catch(error => {
                 this.setState({ error });
+                setTimeout(function(){
+                    this.setState({popupopen: false});
+                }.bind(this), 3000)
             });
         event.preventDefault();
     };
@@ -51,7 +56,9 @@ class PasswordChangeForm extends React.Component {
                         type = "password"
                         name = "passwordOne"
                         label = "Password"
+                        onChange = {this.onChange}
                         fullWidth
+                        value = {this.state.passwordOne}
                         autoComplete = "new-password"
                     />
                 </div>
@@ -60,14 +67,18 @@ class PasswordChangeForm extends React.Component {
                         type = "password"
                         name = "passwordTwo"
                         label = "Confirm Password"
+                        onChange = {this.onChange}
                         fullWidth
+                        value = {this.state.passwordTwo}
                         autoComplete = "new-password"
                         helperText = "Confirm Password"
                     />
                 </div>
                 {error && 
-                    <div className = "alert alert-danger" role = "alert">
-                        {error.message}
+                    <div 
+                    className= {this.state.popupopen ? "alert alert-danger" : "d-none"}  
+                    role = "alert"
+                    >{error.message}
                     </div>
                 }
                 <div className = "m-3">

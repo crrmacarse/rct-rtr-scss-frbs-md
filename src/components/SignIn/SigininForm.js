@@ -18,10 +18,14 @@ class SignInFormBase extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { ...INITIAL_STATE };
+        this.state = { 
+            ...INITIAL_STATE,
+            popupopen : true
+        };
     }
 
     onSubmit = event => {
+        this.setState({popupopen: true});
         const { email, password } = this.state;
 
         this.props.firebase
@@ -32,6 +36,9 @@ class SignInFormBase extends React.Component {
             })
             .catch(error => {
                 this.setState({ error });
+                setTimeout(function(){
+                    this.setState({popupopen: false});
+                }.bind(this), 3000)
             });
 
         event.preventDefault();
@@ -75,8 +82,10 @@ class SignInFormBase extends React.Component {
                     />
                 </div>
                 {error &&
-                    <div className="alert alert-danger" role="alert">
-                        {error.message}
+                    <div 
+                    className= {this.state.popupopen ? "alert alert-danger" : "d-none"} 
+                    role="alert" 
+                    >{error.message}
                     </div>
                 }
                 <Button
