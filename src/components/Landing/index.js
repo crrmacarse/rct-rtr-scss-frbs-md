@@ -1,7 +1,7 @@
 import React from 'react';
 
-import coffeebreaklogo from '../../assets/img/coffeebreaklogo.png';
-import waffletimelogo from '../../assets/img/waffletimelogo.png';
+// import coffeebreaklogo from '../../assets/img/coffeebreaklogo.png';
+// import waffletimelogo from '../../assets/img/waffletimelogo.png';
 
 
 const Landing = () => (

@@ -45,6 +45,7 @@ class PasswordChangeForm extends React.Component {
 
         return(
             <form onSubmit = {this.onSubmit}>
+                <input type="text" autoComplete="username" hidden/>
                 <div className = "m-3">
                     <TextField 
                         type = "password"
