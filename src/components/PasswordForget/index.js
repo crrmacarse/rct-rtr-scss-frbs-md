@@ -13,7 +13,6 @@ const PasswordForget = () => (
                 <PasswordForgetForm />
             </div>
         </div>
-        
 );
 
 const PasswordForgetLink = () => (

@@ -47,7 +47,6 @@ class SignInFormBase extends React.Component {
         const isInvalid = password === '' || email === '';
 
         return (
-
             <form onSubmit={this.onSubmit}>
                 <div className="m-3">
                     <TextField
@@ -88,7 +87,6 @@ class SignInFormBase extends React.Component {
                     color="primary"
                 >Sigin in
                 </Button>
-
             </form>
         )
     }

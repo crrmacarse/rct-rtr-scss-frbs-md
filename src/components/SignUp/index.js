@@ -7,21 +7,22 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 const Signup = () => (
-    <div>
-        <div className="row">
-            <div className="col-auto mx-auto">
-                <h1>Signup Form</h1>
-            </div>
+    <div className="row">
+        <div className="col-12 text-center">
+            <h1>Signup Form</h1>
         </div>
-        <SignUpForm />
+        <div className="col-6 mx-auto">
+            <SignUpForm />
+        </div>
     </div>
+
 );
 
 
 const SignUpLink = () => (
-        <p>
-            Don't have an account? <Link to={ROUTES.SIGN_UP}> Sign Up</Link>
-        </p>
+    <p>
+        Don't have an account? <Link to={ROUTES.SIGN_UP}> Sign Up</Link>
+    </p>
 );
 
 export default Signup;
