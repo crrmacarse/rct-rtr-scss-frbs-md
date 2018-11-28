@@ -4,12 +4,10 @@ import { compose } from 'recompose';
 
 import { withRouter } from 'react-router-dom';
 
-import * as ROUTES from '../../constants/routes';
-
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import * as ROUTES from '../../constants/routes';
 
 const INITIAL_STATE = {
     username: '',
@@ -32,8 +30,16 @@ class SignUpFormBase extends React.Component {
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
-                this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.HOME);
+                return this.props.firebase
+                  .user(authUser.user.uid)
+                  .set({
+                    username,
+                    email,
+                  });
+              })
+            .then(() => {
+            this.setState({ ...INITIAL_STATE });
+            this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
@@ -132,8 +138,6 @@ class SignUpFormBase extends React.Component {
         );
     }
 }
-
-
 
 const SignUpForm = compose(
     withRouter,
