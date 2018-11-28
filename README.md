@@ -2,10 +2,10 @@
 
 ### Bootstrap v4 Guideline
 
-- container inside App.js 
-	-- row inside /component folder with indexjs { export default }
-		--- col division inside /component folder with indexjs { export default }
-			----- a mere html no col definition { export } *S1.0
+- container inside App.js <br />
+	-- row inside /component folder with indexjs { export default } <br />
+		--- col division inside /component folder with indexjs { export default } <br />
+			----- a mere html no col definition { export } *S1.0 <br />
 
 
 ###### Snippet 1.0
