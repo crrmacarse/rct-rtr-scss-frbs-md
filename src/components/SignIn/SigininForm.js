@@ -25,7 +25,6 @@ class SignInFormBase extends React.Component {
     }
 
     onSubmit = event => {
-        this.setState({popupopen: true});
         const { email, password } = this.state;
 
         this.props.firebase

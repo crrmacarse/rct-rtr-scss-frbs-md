@@ -22,7 +22,6 @@ class PasswordChangeForm extends React.Component {
     }
 
     onSubmit = event => {
-        this.setState({popupopen: true});
         const { passwordOne } = this.state;
 
         this.props.firebase
