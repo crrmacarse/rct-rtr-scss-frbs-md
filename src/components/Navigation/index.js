@@ -35,8 +35,11 @@ const NavigationAuth = () => (
         <li className="nav-item">
             <Link className="nav-link" to={ROUTES.HOME}>Home</Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
             <Link className="nav-link" to={ROUTES.ADMIN}> Admin</Link>
+        </li> */}
+        <li className="nav-item">
+            <Link className="nav-link" to={ROUTES.MANAGE}> Manage</Link>
         </li>
         <li className="nav-item">
             <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
