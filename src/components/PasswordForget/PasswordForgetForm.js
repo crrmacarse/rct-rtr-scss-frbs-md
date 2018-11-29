@@ -22,7 +22,6 @@ class PasswordForgetBase extends React.Component {
     }
 
     onSubmit = event => {
-        this.setState({popupopen: true});
         const { email } = this.state;
 
         this.props.firebase

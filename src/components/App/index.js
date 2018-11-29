@@ -14,8 +14,10 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import ManagePage from '../Manage';
 
 import * as ROUTES from '../../constants/routes';
+
 
 
 const App = () => (
@@ -30,6 +32,7 @@ const App = () => (
             <Route exact path={ROUTES.HOME} component={HomePage} />
             <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+            <Route exact path={ROUTES.MANAGE} component={ManagePage} />
         </div>
     </Router>
 );
