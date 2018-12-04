@@ -17,6 +17,9 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import MailIcon from '@material-ui/icons/Mail';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 
+import ManageItems from './ManageItems';
+import ManageItemForm from './ManageItemForm';
+
 
 const styles = theme => ({
     root: {
@@ -35,8 +38,6 @@ class ManagePage extends React.Component {
         right: false,
       };
     
-
-
     toggleDrawer = (side, open) => () => {
         this.setState({
             [side]: open,
@@ -57,7 +58,7 @@ class ManagePage extends React.Component {
                     ))}
                 </List>
               
-                <Divider />
+                <Divider /> 
 
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
@@ -72,8 +73,11 @@ class ManagePage extends React.Component {
 
         return (
             <div className="row">
-                <div className="col-10">
-
+                <div className="col-4">
+                    <ManageItemForm />
+                </div>
+                <div className = "col">
+                    <ManageItems />
                 </div>
                 <div className="col-2">
                     <Button
