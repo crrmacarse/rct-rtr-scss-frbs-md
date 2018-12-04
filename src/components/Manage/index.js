@@ -28,8 +28,6 @@ const styles = theme => ({
     },
 });
 
-
-
 class ManagePage extends React.Component {
     state = {
         right: false,

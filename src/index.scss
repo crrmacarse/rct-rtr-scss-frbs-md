@@ -1,5 +1,8 @@
+// $primary-color: #f5f5f5;
 $primary-color: #333;
-$primary-background: #333;
+// $primary-background: #191c21;
+$primary-background: #f5f5f5;
+$secondary-background: #c62828;
 
 body{
   margin: 0;
@@ -10,6 +13,11 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $primary-color;
+  background-color: $primary-background;
+
+  .container-fluid{
+    margin-top: 5%;
+  }
 }
 
 .LandingPageIntro{
@@ -21,3 +29,23 @@ body{
       font-weight: 300;
     }
 } 
+
+.navbar {
+  background-color: $secondary-background;
+  // padding: .1rem 1rem;
+
+  .vl{
+    border-left: 1px solid #333;
+    height: 30px;
+  }
+
+}
+
+.navbar-side{
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  width: 3%;
+
+}

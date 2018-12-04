@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
@@ -7,8 +7,19 @@ import { AuthUserContext } from '../Session';
 
 import SignOutButton from '../SignOut';
 
+import NavbarTop from './Navbar';
+import { NavbarSide } from './Navbar';
+
+
+const NavigationPage = () => (
+    <React.Fragment>
+        <NavbarTop />
+        <NavbarSide />
+    </React.Fragment>
+)
+
 const Navigation = () => (
-    <nav className="navbar navbar-expand-lg navbar-light">
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <Link className="navbar-brand" to={ROUTES.LANDING}>Content Management System</Link>
         <button
             className="navbar-toggler"
@@ -45,7 +56,7 @@ const NavigationAuth = () => (
             <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
         </li>
 
-        <li className="nav-item active">
+        <li className="nav-item">
             <SignOutButton />
         </li>
     </ul>
@@ -59,4 +70,6 @@ const NavigationNonAuth = () => (
     </ul>
 )
 
+
+// return to Navigation to remove Navbar custom
 export default Navigation;
