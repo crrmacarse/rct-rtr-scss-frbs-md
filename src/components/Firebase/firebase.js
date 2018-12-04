@@ -39,8 +39,22 @@ class Firebase {
 
   items = () => this.db.ref('items/waffle');
 
-  doCreateItems = (name) => this.db.ref('items/waffle').push({name: name});
+  // checkItems = (name) => this.db.ref(`items/waffle/${name}`).once('value', snapshot => {
+  //   console.log(snapshot.val());
+  //   return true;
+  // });
 
+  // checkItems = (name) => this.db.ref('items/').child("waffle").orderByChild('name').equalTo(name).on("value", snapshot => {
+  //   if(snapshot.exists()) { return true };
+  // });
+
+  // ::::::::::: This is the functional one 
+
+  searchChild = (ref, child, search) => this.db.ref(ref).orderByChild(child).equalTo(search).on('value', snapshot => {
+    console.log(snapshot.val());
+  });
+
+  doCreateItems = (name) => this.db.ref('items/waffle').push({name: name});
 
 }
 

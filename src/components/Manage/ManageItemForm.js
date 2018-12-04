@@ -1,21 +1,17 @@
 import React from 'react';
-
+import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { withAuthorization } from '../Session';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-
-import * as ROUTES from '../../constants/routes';
-
 const INITIAL_STATE = {
-    name : '',
+    name: '',
 }
 
-
-class ManageItemForm extends React.Component{
-    constructor(props){
+class ManageItemForm extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -25,45 +21,65 @@ class ManageItemForm extends React.Component{
 
     onSubmit = event => {
         const { name } = this.state;
+ 
+        // if(this.props.firebase.checkItems(name)){
+        //     console.log(name);
+        //     return;
+        // }
 
-        console.log(name);
-    
-        this.props.firebase
-          .doCreateItems(name)
-          .then(() => {
-                this.setState({...INITIAL_STATE});
-                console.log("success");
-          })
-          .catch(error => {
-              console.log(error);
-          })
+        console.log(this.props.firebase.searchChild('items/waffle', 'name', name));
+        // if(this.props.firebase.searchChild(this.props.firebase.items(), 'name', name) === "true"){
+        //     console.log("exists");
+        // }
+
+
+        // :::::::::::::::::::: This is functional  ::::::::::::::::::::::::::::::::::::
+        // What i'm trying to achieve is a validation for duplicates in database
         
+
+        // this.props.firebase.items().orderByChild('name').equalTo(name).on("value", snapshot => {
+        //     if(snapshot.exists()) { return };
+        //   });
+
+        // this.props.firebase
+        //     .doCreateItems(name)
+        //     .then(() => {
+        //         this.setState({ ...INITIAL_STATE });
+        //         console.log("success");
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
+
         event.preventDefault();
     }
 
     onChange = event => {
-        this.setState({[event.target.name] : event.target.value});
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    render(){
+    render() {
         const { name } = this.state;
 
-        return(
-            <form onSubmit = {this.onSubmit}>
-            <TextField 
-                fullWidth
-                name = "name"
-                onChange = {this.onChange}
-                value = {name}
-                label="Name"
-            />
-            <Button 
-                type = "submit"
-                variant = "contained"
-                color = "primary"
-                fullWidth
-            >Submit 
-            </Button>            
+        const isInvalid = name === '';
+
+        return (
+            <form onSubmit={this.onSubmit}>
+                <TextField
+                    fullWidth
+                    name="name"
+                    onChange={this.onChange}
+                    value={name}
+                    label="Name"
+                />
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    disabled={isInvalid}
+                >Submit
+            </Button>
             </form>
         )
     }
@@ -72,4 +88,9 @@ class ManageItemForm extends React.Component{
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(ManageItemForm);
+const ManageItem = compose(
+    withRouter,
+    withAuthorization(condition)
+)(ManageItemForm);
+
+export default ManageItem;

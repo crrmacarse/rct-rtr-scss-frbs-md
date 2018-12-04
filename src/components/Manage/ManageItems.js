@@ -8,10 +8,12 @@ class ManageItemPage extends React.Component{
 
         this.state = {
             items: [],
+            loading: false,
         }
     }
 
     componentDidMount(){
+        this.setState({loading: true});
 
         this.props.firebase.items().on('value', snapshot => {
             const listObject = snapshot.val();
@@ -23,6 +25,7 @@ class ManageItemPage extends React.Component{
 
             this.setState({
                 items: userList,
+                loading: false,
             })
         });
 
@@ -33,19 +36,26 @@ class ManageItemPage extends React.Component{
     }
 
     render(){
-        const { items } = this.state;
+        const { items, loading } = this.state;
 
         return(
             <React.Fragment>
-                {items.map(item => (
-                    <li key = {item.uid}>
-                        {item.name} {item.uid}
-                    </li>
-                ))}
+                {loading && <div>Loading</div>}
+               <ItemList items = {items} />
             </React.Fragment>
         )
     }
 }
+
+const ItemList = ({ items }) => (
+    <ul>
+        {items.map(item => (
+            <li key = {item.uid}>
+                {item.name}
+            </li>
+        ))}
+    </ul>
+)
 
 
 const condition = authUser => !!authUser;
