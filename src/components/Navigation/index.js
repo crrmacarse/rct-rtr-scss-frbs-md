@@ -8,7 +8,7 @@ import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
 
 const Navigation = () => (
-    <nav className="navbar navbar-expand-lg navbar-light">
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
         <Link className="navbar-brand" to={ROUTES.LANDING}>Content Management System</Link>
         <button
             className="navbar-toggler"
@@ -45,7 +45,7 @@ const NavigationAuth = () => (
             <Link className="nav-link" to={ROUTES.ACCOUNT}> Account</Link>
         </li>
 
-        <li className="nav-item active">
+        <li className="nav-item">
             <SignOutButton />
         </li>
     </ul>
