@@ -19,7 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 
 import ManageItems from './ManageItems';
 import ManageItemForm from './ManageItemForm';
-
+import ManageList from './ManageList';
 
 const styles = theme => ({
     root: {
@@ -52,7 +52,8 @@ class ManagePage extends React.Component {
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />} </ListItemIcon>
+
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
@@ -73,11 +74,10 @@ class ManagePage extends React.Component {
 
         return (
             <div className="row">
-                <div className="col-4">
-                    <ManageItemForm />
-                </div>
-                <div className = "col">
-                    <ManageItems />
+                <div className="col-10">
+                    <ManageList />
+                    {/* <ManageItemForm /> */}
+                    {/* <ManageItems /> */}
                 </div>
                 <div className="col-2">
                     <Button
